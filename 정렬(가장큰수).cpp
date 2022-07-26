@@ -4,6 +4,8 @@
 #include <iostream>
 
 using namespace std;
+
+
 //303 > 330 false라 자리 바뀜
 bool sorting(string a, string b) {
     return a + b > b + a;
@@ -17,7 +19,7 @@ string solution(vector<int> numbers) {
     for (int i = 0; i < numbers.size(); i++) {
         temp.push_back(to_string(numbers[i]));
     }
-    //문자정렬 하면 30이 3보다 앞으로 와서 custom
+    //문자정렬 하면 30이 3보다 앞으로 와서 custom정렬
     sort(temp.begin(), temp.end(), sorting);
     
     //문제에 0 또는 양의 정수라  0오면 걍 0임 

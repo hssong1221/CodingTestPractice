@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// H-Index의 대한 이야기의 이해를 먼저 해야한다
 int solution(vector<int> citations) {
     int answer = 0;
 
@@ -21,7 +22,6 @@ int solution(vector<int> citations) {
     }
 
     cout << answer;
-
     return answer;
 }
 
