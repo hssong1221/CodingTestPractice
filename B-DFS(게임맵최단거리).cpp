@@ -29,8 +29,6 @@ void BFS(int x, int y) {
         int ty = q.front().second;
         q.pop();
 
-        cout << tx << " " << ty << endl;
-
         for (int i = 0; i < 4; i++) {
             int nx = tx + dx[i];
             int ny = ty + dy[i];
