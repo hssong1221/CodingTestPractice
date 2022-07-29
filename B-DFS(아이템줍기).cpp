@@ -9,7 +9,7 @@ vector<vector<int>> r(102, vector<int>(102, 0));
 vector<vector<int>> r2(102, vector<int>(102, 0));
 
 // 방문 여부와 도착순서
-vector<vector<int>> visit(30, vector<int>(30, 0));
+vector<vector<int>> visit(102, vector<int>(102, 0));
 //큐
 queue<pair<int, int>> q;
 //상하좌우
