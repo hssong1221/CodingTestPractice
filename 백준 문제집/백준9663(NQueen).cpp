@@ -10,28 +10,29 @@ int board;
 // 정답
 int answer = 0;
 
-// 쓸모없는 검사 쳐내기
-bool prunning(int n) {
-	for (int i = 0; i < n; i++) {
-		// 같은 라인에 있고 대각선이라면 거르기
-		if (col[n] == col[i] || abs(col[n] - col[i]) == abs(n - i))
-			return false;
-	}
-	return true;
-}
-
 void DFS(int n) {
 	// 최대 퀸의 갯수 도달
 	if (n == board)
 		answer++;
 	else {
-		for (int i = 0; i < board; i++) {
+		for (int k = 0; k < board; k++) {
 			// 퀸 배치
-			col[n] = i;
+			col[n] = k;
+			// 플래그
+			bool flag = true;
+
 			// 다음 퀸 놓을 수 있나 확인
-			if (prunning(n)) {
-				DFS(n + 1);
+			for (int i = 0; i < n; i++) {
+				flag = false;
+				// 같은 라인에 있고 대각선이라면 거르기
+				if (col[n] == col[i] || abs(col[n] - col[i]) == abs(n - i))
+					break;
+				// 끝까지 통과하면 퀸 배치 가능
+				if (i == n - 1)
+					flag = true;
 			}
+			if (flag)
+				DFS(n + 1);
 		}
 	}
 }
