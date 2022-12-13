@@ -33,3 +33,22 @@ int main() {
 	solution({ "marina", "josipa", "nikola", "vinko", "filipa" }, { "josipa", "filipa", "marina", "nikola" });
 	return 0;
 }
+
+/* //20221212 Àç±¸Çö
+string solution(vector<string> participant, vector<string> completion) {
+	string answer = "";
+	map<string, int> m;
+
+	for (auto p : participant)
+		m[p]++;
+
+	for (auto c : completion)
+		m[c]--;
+
+	int max = 0;
+	for (auto iter = m.begin(); iter != m.end(); iter++) {
+		if (max < iter->second)
+			answer = iter->first;
+	}
+	return answer;
+}*/

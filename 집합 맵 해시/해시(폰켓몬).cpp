@@ -35,3 +35,16 @@ int main() {
     solution({ 3,1,2,3 });
     return 0;
 }
+
+/* 20221212 Àç±¸Çö
+int solution(vector<int> nums) {
+    int answer = 0;
+    map<int, int> pmon;
+
+    for (auto n : nums)
+        pmon[n]++;
+    
+    answer = min(nums.size() / 2, pmon.size());
+
+    return answer;
+}*/
