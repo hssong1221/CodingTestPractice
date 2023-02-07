@@ -13,66 +13,50 @@
 
 using namespace std;
 
-vector<vector<int>> v1(32, vector<int>(32, 0)); // 1024ĭ
-vector<vector<int>> v2(32, vector<int>(32, 0)); // 1024ĭ
-string s1;
-string s2;
+vector<vector<int>> v(32, vector<int>(32, 0));
 
-void DFS1(int x, int y, int n , string s, int idx) {
-    if (s[idx] == 'p' ) {
-        int num = n / 2;
-        if(idx + 4  < s.size()){
-            if (s[idx + 1] != 'p' && s[idx + 2] != 'p' && s[idx + 3] != 'p' && s[idx + 4] != 'p') {
-                DFS1(x, y, num, s, idx + 1);
-                DFS1(x + num, y, num, s, idx + 2);
-                DFS1(x + num, y + num, num, s, idx + 3);
-                DFS1(x, y + num, num, s, idx + 4);
-            }
-        }
-        else {
-            DFS1(x, y, num, s, idx + 1);
-            DFS1(x + num, y, num, s, idx + 1);
-            DFS1(x + num, y + num, num, s, idx + 1);
-            DFS1(x, y + num, num, s, idx + 1);
-        }
+void DFS(int x, int y, int n, string::iterator& iter) {
+	char c = *iter;
+	cout << c << endl;
+	iter++;
 
-    }
-
-    cout << s[idx] << endl;;
-    for (int i = x; i < x + n; i++) {
-        for (int j = y; j < y + n; j++) {
-            if (s[idx] == 'w') {
-                v1[i][j] = 0;
-            }
-            else {
-                v1[i][j] = 1;
-            }
-        }
-    }
+	if (c == 'b' || c == 'w') {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				v[i + x][j + y] = (c == 'b' ? 1 : 0);
+			}
+		}
+	}
+	else {
+		int half = n / 2;
+		DFS(x, y, half, iter);
+		DFS(x + half, y, half, iter);
+		DFS(x + half, y + half, half, iter);
+		DFS(x, y + half, half, iter);
+	}
 }
 
 int solution(string S1, string S2) {
-    int answer = 0;
-    s1 = S1;
-    s2 = S2;
-    s1 += "0";
-    s2 += "0";
-    int n = 32;
-    DFS1(0, 0, n, s1, 0);
+	int answer = 0;
+	int n = 32;
 
-    for (auto a : v1) {
-        for (auto b : a)
-            cout << b << " ";
-        cout << endl;
-    }
+	string::iterator iter = S1.begin();
 
-    cout << endl;
+	DFS(0, 0, n, iter);
 
 
-    return answer;
+	for (auto a : v) {
+		for (auto b : a) {
+			cout << b << " ";
+		}
+		cout << endl;
+	}
+
+
+	return answer;
 }
 
 int main() {
-    solution("ppwwwbpbbwwbw", "b");
-    return 0;
+	solution("ppwwwbpbbwwbw", "ppwwwbpbbwwbw");
+	return 0;
 }
